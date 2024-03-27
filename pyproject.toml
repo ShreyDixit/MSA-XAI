@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "msa-xai"
+version = "0.1.0"
+description = ""
+authors = ["Shrey Dixit <shreyakshaj@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+msapy = "^1.7.1"
+torch = "^2.2.1"
+matplotlib = "^3.8.3"
+seaborn = "^0.13.2"
+
+
+[tool.poetry.group.llm.dependencies]
+transformers = "^4.39.1"
+bitsandbytes = "^0.43.0"
+levenshtein = "^0.25.0"
+accelerate = "^0.28.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
