@@ -11,6 +11,7 @@ msapy = "^1.7.1"
 torch = "^2.2.1"
 matplotlib = "^3.8.3"
 seaborn = "^0.13.2"
+jupyter = "^1.0.0"
 
 
 [tool.poetry.group.llm.dependencies]
@@ -18,6 +19,15 @@ transformers = "^4.39.1"
 bitsandbytes = "^0.43.0"
 levenshtein = "^0.25.0"
 accelerate = "^0.28.0"
+
+
+[tool.poetry.group.dcgan.dependencies]
+torchvision = "^0.17.1"
+gdown = "^5.1.0"
+ipywidgets = "^8.1.2"
+bctpy = "^0.6.1"
+netneurotools = "^0.2.4"
+imageio = "^2.34.0"
 
 [build-system]
 requires = ["poetry-core"]
