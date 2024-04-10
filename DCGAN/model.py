@@ -2,6 +2,7 @@ from collections import defaultdict
 from typing import Optional
 import torch.nn as nn
 import torch
+from torch.nn.utils import spectral_norm
 
 import torchvision.utils as vutils
 from torch.utils.data import DataLoader
@@ -60,10 +61,10 @@ class Discriminator(nn.Module):
     def __init__(self, nc: int, ndf: int, num_layers: int) -> None:
         super().__init__()
         self.main = nn.Sequential(
-            nn.Conv2d(nc, ndf, 4, 2, 1, bias=False),
+            spectral_norm(nn.Conv2d(nc, ndf, 4, 2, 1, bias=False)),
             nn.LeakyReLU(0.2, inplace=True),
             *[nn.Sequential(
-                nn.Conv2d(ndf * 2**i, ndf * 2**(i+1), 4, 2, 1, bias=False),
+                spectral_norm(nn.Conv2d(ndf * 2**i, ndf * 2**(i+1), 4, 2, 1, bias=False)),
                 nn.BatchNorm2d(ndf * 2**(i+1)),
                 nn.LeakyReLU(0.2, inplace=True)) for i in range(num_layers-2)],
             nn.Conv2d(ndf * (2**(num_layers - 2)), 1, 4, 1, 0, bias=False),
@@ -116,12 +117,12 @@ def training_step(
 def train_model(
     generator: Generator, discriminator: Discriminator,
     num_epochs: int, lr: float, data_loader: DataLoader, nz: int, fixed_noise: torch.Tensor,
-    save_every: int = 100, device: torch.device = 'cuda'):
+    filename: str, save_every: int = 100, device: torch.device = 'cuda'):
     """
     Trains the generator and discriminator for the specified number of epochs.
     """
     generator_optimizer = torch.optim.Adam(generator.parameters(), lr=lr, betas=(0.5, 0.999))
-    discriminator_optimizer = torch.optim.Adam(discriminator.parameters(), lr=lr, betas=(0.5, 0.999))
+    discriminator_optimizer = torch.optim.Adam(discriminator.parameters(), lr=lr/2, betas=(0.5, 0.999))
     criterion = nn.BCELoss()
 
     real_label = 1.
@@ -142,7 +143,7 @@ def train_model(
                 generator, discriminator, 
                 generator_optimizer, discriminator_optimizer, 
                 criterion, real_images, nz, 
-                real_label, fake_label
+                real_label, fake_label, device
             )
             if iters % save_every == 0:
                 with torch.no_grad():
@@ -153,7 +154,7 @@ def train_model(
                 img_list.append(fake)
 
                 # save img_list as a gif
-                imageio.mimsave('dcgan_epoch.gif', img_list, fps=2)
+                imageio.mimsave(f'{filename}.gif', img_list, fps=2)
             iters += 1
 
     return img_list
