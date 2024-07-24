@@ -4,6 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Shrey Dixit <shreyakshaj@gmail.com>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -12,6 +13,8 @@ torch = "^2.2.1"
 matplotlib = "^3.8.3"
 seaborn = "^0.13.2"
 jupyter = "^1.0.0"
+setuptools = "^69.2.0"
+black = "^24.4.2"
 
 
 [tool.poetry.group.llm.dependencies]
@@ -19,6 +22,7 @@ transformers = "^4.39.1"
 bitsandbytes = "^0.43.0"
 levenshtein = "^0.25.0"
 accelerate = "^0.28.0"
+huggingface-hub = "^0.23.2"
 
 
 [tool.poetry.group.dcgan.dependencies]
@@ -28,6 +32,11 @@ ipywidgets = "^8.1.2"
 bctpy = "^0.6.1"
 netneurotools = "^0.2.4"
 imageio = "^2.34.0"
+
+
+[tool.poetry.group.mlp.dependencies]
+scikit-learn = "^1.5.0"
+torchvision = "^0.17.1"
 
 [build-system]
 requires = ["poetry-core"]
