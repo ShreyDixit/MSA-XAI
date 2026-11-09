@@ -1,15 +1,16 @@
-from typing import Optional, Tuple, Union
+from typing import Optional, Union
 import numpy as np
 from sklearn.metrics import accuracy_score, confusion_matrix
 import torch
 
 @torch.no_grad()
-def evaluate_model(model, testloader, lesion_idx: Optional[Union[int, Tuple[int]]] = None, num_batches: int = -1, score_fn=accuracy_score):
+def evaluate_model(model, testloader, lesion_idx: Optional[Union[int, tuple[int, ...], list[int]]] = None, num_batches: int = -1, score_fn=accuracy_score, lesion_mode: str = "zero"):
     """return the accuracy of the model on test dataset
 
     Args:
         lesion_idx (Optional[Union[int,List[int]]], optional): the neuron that we want to lesion in the hidden layer1. Defaults to None i.e. no lesioning performed.
         num_batches (int, optional): the number of batches we want to test our model. Defaults to -1 i.e. all data
+        lesion_mode (str, optional): how to lesion hidden neurons. Use "zero" or "mean".
 
     Returns:
         float: test accuracy
@@ -20,7 +21,7 @@ def evaluate_model(model, testloader, lesion_idx: Optional[Union[int, Tuple[int]
     for i, data in enumerate(testloader):
         images, labels = data
         # calculate outputs by running images through the network
-        outputs = model(images, lesion_idx)
+        outputs = model(images, lesion_idx, lesion_mode=lesion_mode)
         # the class with the highest score is what we choose as prediction
         _, predicted = torch.max(outputs.data, 1)
         preds.append(predicted)
@@ -39,5 +40,12 @@ def accuracy_each_class(targets, preds):
 
     return np.array(acc)
 
-def objective_fun(lesion_idx, model, testloader, num_batches, score_fn):
-    return evaluate_model(model, testloader, lesion_idx, num_batches, score_fn)
+def objective_fun(lesion_idx, model, testloader, num_batches, score_fn, lesion_mode: str = "zero"):
+    return evaluate_model(
+        model,
+        testloader,
+        lesion_idx,
+        num_batches,
+        score_fn,
+        lesion_mode=lesion_mode,
+    )

@@ -38,7 +38,7 @@ def get_data_loaders(device):
 
     trainloader = DataLoader(train_ds, batch_size=64, shuffle=True)
 
-    testloader = DataLoader(test_ds, batch_size=1024)
+    testloader = DataLoader(test_ds, batch_size=1024, shuffle=True)
 
     return trainloader, testloader
 

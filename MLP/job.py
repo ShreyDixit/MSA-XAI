@@ -11,16 +11,21 @@ def create_folders_if_not_exist(names: list[str]):
             os.makedirs(name)
 
 
-models_dir = "models"
-shapley_modes_dir = "shapley_modes"
-
-create_folders_if_not_exist([models_dir, shapley_modes_dir])
-
-device = torch.device("cuda:3")
+device = torch.device("cuda")
 num_permutations = 1000
-num_neurons_list = list(range(5, 201, 5))
+num_neurons_list = list(range(5, 201, 50))
 num_epochs = 6
 num_trials = 10
+lesion_mode = "zero"
+
+if lesion_mode == "mean":
+    models_dir = "models_mean"
+    shapley_modes_dir = "shapley_modes_mean"
+else:
+    models_dir = "models"
+    shapley_modes_dir = "shapley_modes"
+
+create_folders_if_not_exist([models_dir, shapley_modes_dir])
 
 regularisations = ["l1 regularization", "l2 regularization", "none regularization"]
 
@@ -47,6 +52,7 @@ for regularisation in regularisations:
                 trainloader,
                 testloader,
                 device,
+                lesion_mode,
             )
             for _ in range(num_trials)
         )
