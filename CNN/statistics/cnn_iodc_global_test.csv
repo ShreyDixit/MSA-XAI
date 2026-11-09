@@ -1,0 +1,2 @@
+test,n_total,h_statistic,epsilon_squared,p_value,p_fdr,significant_p_fdr
+Kruskal-Wallis,90,59.53846153846155,0.6613616268788683,1.178656746560047e-13,1.178656746560047e-13,yes

@@ -1,13 +1,16 @@
-from typing import Optional
+from typing import Optional, Union
 
 import torch
+
+
+LesionIndex = Optional[Union[int, tuple[int, ...]]]
 
 
 @torch.inference_mode()
 def evaluate_model(
     model,
     testloader,
-    lesion_idx: Optional[tuple[tuple[int, int], ...]] = None,
+    lesion_idx: LesionIndex = None,
     num_batches: int = -1,
     score_fn=None,
     device: torch.device = torch.device("cpu"),
@@ -82,10 +85,21 @@ def preload_batches(
 
 
 @torch.inference_mode()
+def preload_hidden_batch(
+    model,
+    batch_data,
+):
+    model.eval()
+    images, labels = batch_data
+    hidden = model.compute_hidden(images)
+    return hidden, labels
+
+
+@torch.inference_mode()
 def evaluate_preloaded_batch(
     model,
     batch_data,
-    lesion_idx: Optional[tuple[tuple[int, int], ...]] = None,
+    lesion_idx: LesionIndex = None,
     score_fn=None,
 ):
     if score_fn is None:
@@ -99,6 +113,24 @@ def evaluate_preloaded_batch(
     return score_fn(labels, predicted)
 
 
+@torch.inference_mode()
+def evaluate_hidden_batch(
+    model,
+    hidden_batch,
+    lesion_idx: LesionIndex = None,
+    score_fn=None,
+):
+    if score_fn is None:
+        score_fn = accuracy_score
+
+    model.eval()
+
+    hidden, labels = hidden_batch
+    outputs = model.forward_from_hidden(hidden, lesion_idx)
+    predicted = outputs.argmax(dim=1)
+    return score_fn(labels, predicted)
+
+
 def objective_fun(
     lesion_idx,
     model,
@@ -107,7 +139,11 @@ def objective_fun(
     score_fn=None,
     device: torch.device = torch.device("cpu"),
     batch_data=None,
+    hidden_batch=None,
 ):
+    if hidden_batch is not None:
+        return evaluate_hidden_batch(model, hidden_batch, lesion_idx, score_fn)
+
     if batch_data is not None:
         return evaluate_preloaded_batch(model, batch_data, lesion_idx, score_fn)
 

@@ -20,9 +20,9 @@ create_folders_if_not_exist([models_dir, shapley_modes_dir])
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 num_permutations = 1000
-num_epochs = 50
-num_trials = 10
-n_jobs = 10
+num_epochs = 40
+num_trials = 30
+n_jobs = 5
 
 regularisations = ["l1 regularization", "l2 regularization", "none regularization"]
 

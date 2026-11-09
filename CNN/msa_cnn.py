@@ -4,12 +4,17 @@ import torch
 import torch.optim as optim
 from msapy import msa
 
-from evaluation import accuracy_each_class, objective_fun, preload_batches
-from model import TinyResNet, train_imagenette_net
+from evaluation import (
+    accuracy_each_class,
+    objective_fun,
+    preload_batches,
+    preload_hidden_batch,
+)
+from model import LesionableResNet18, train_imagenette_net
 
 
-REGULARIZATION_LAMBDA = 1e-4
-LEARNING_RATE = 0.001
+REGULARIZATION_LAMBDA = 3e-4
+LEARNING_RATE = 0.01
 
 
 def perform_one_msa_trial(
@@ -21,10 +26,17 @@ def perform_one_msa_trial(
     testloader: torch.utils.data.DataLoader,
     device: torch.device,
 ):
-    model = TinyResNet().to(device)
+    model = LesionableResNet18(
+        hidden_features=200,
+        pretrained=True,
+        freeze_backbone=True,
+    ).to(device)
+    trainable_parameters = [
+        parameter for parameter in model.parameters() if parameter.requires_grad
+    ]
     weight_decay = REGULARIZATION_LAMBDA if l2_regularization else 0.0
     optimizer = optim.AdamW(
-        model.parameters(),
+        trainable_parameters,
         lr=LEARNING_RATE,
         weight_decay=weight_decay,
     )
@@ -48,13 +60,14 @@ def perform_one_msa_trial(
 
     elements = model.lesionable_elements()
     eval_batch = preload_batches(testloader, num_batches=1, device=device)
+    eval_hidden_batch = preload_hidden_batch(model, eval_batch)
 
     cached_objective_function = cache(
         partial(
             objective_fun,
             model=model,
             score_fn=accuracy_each_class,
-            batch_data=eval_batch,
+            hidden_batch=eval_hidden_batch,
         )
     )
 
