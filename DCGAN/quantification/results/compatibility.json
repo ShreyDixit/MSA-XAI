@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "maximum_absolute_residual": 1.192732399513119e-07,
+  "mean_absolute_residual": 2.408964360284481e-09,
+  "max_repeat_difference": 1.1920928955078125e-07,
+  "absolute_tolerance": 1e-05,
+  "relative_l2_tolerance": 1e-05,
+  "all_lesioned_output_max_abs": 0.0,
+  "image_order_matches": true,
+  "historical_provenance": "No historical artifact hashes were stored; compatibility is supported by full-image Shapley efficiency and ordered unit/latent checks, not a historical hash attestation.",
+  "device_name": "NVIDIA A100 80GB PCIe",
+  "cudnn_version": 8902
+}

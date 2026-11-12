@@ -1,0 +1,74 @@
+{
+  "inputs": {
+    "checkpoint": {
+      "path": "/home/shrey/MSA-XAI/DCGAN/saved_results/celebA_GAN_bigger_smodel.pth",
+      "bytes": 51173644,
+      "sha256": "11ee12592097d9ecf222b8c17dcc93bda2271799c4e2ba6cf96580c28e25c555"
+    },
+    "latents": {
+      "path": "/home/shrey/MSA-XAI/DCGAN/fixed_noise.t",
+      "bytes": 13586,
+      "sha256": "2aac9a42e296deb24d1428c6571be11502ff02d00f09940bcaf91dbb6840a162"
+    },
+    "modes": {
+      "path": "/home/shrey/MSA-XAI/DCGAN/saved_results/shapley_modes_bigger_celebA.pkl",
+      "bytes": 25002326416,
+      "sha256": "64deca9162e97519bd0b0f0da2c234d4849fe8d2d1f6e8f9937e364a2fe87745"
+    }
+  },
+  "source_sha256": {
+    "model.py": "59633449179400e269f882158db34306a64fa44904d2ccba52456cb4c9bde725",
+    "quantify.py": "9505e77c60dd0d44576bfd6a23ee2510fba264b9757c97188a81f5c1a43ca607",
+    "quantification/metrics.py": "6763f77123139dd4d7b3b48a5d02ae248d9995629c214661fcccdf6322c71eb2",
+    "quantification/storage.py": "a9fd05441e5b2efa69b4acc25ffc7d2940c13aa3cde321fb8e52db286e42bacd"
+  },
+  "settings": {
+    "device": "cuda:0",
+    "batch_size": 32,
+    "seed": 2810,
+    "fraction": 0.2,
+    "shuffles": 100,
+    "bootstrap": 10000,
+    "threads": 4
+  },
+  "created_utc": "2026-11-12T14:09:06.121533+00:00",
+  "versions": {
+    "torch": "2.2.1",
+    "torchvision": "0.17.1",
+    "numpy": "1.26.4",
+    "pandas": "2.2.1",
+    "scipy": "1.12.0",
+    "matplotlib": "3.8.3",
+    "msapy": "1.7.2"
+  },
+  "image_count": 32,
+  "mode_shape": [
+    32,
+    3,
+    128,
+    128
+  ],
+  "layer_widths": [
+    1024,
+    512,
+    256,
+    128,
+    64,
+    3
+  ],
+  "historical_estimates_only": true,
+  "historical_permutations": {
+    "count": 3000,
+    "source": "CelebA GAN.ipynb cell 2; not stored in pickle"
+  },
+  "lesion": "Zero the chosen output channel after the complete layer block (ConvTranspose2d, BatchNorm2d, ReLU); final block is ConvTranspose2d,Sigmoid.",
+  "mode_game": "All 1984 hidden filters AND three output RGB channels are players, as in the notebook.",
+  "precision": {
+    "inference_dtype": "float32",
+    "mode_dtype": "float64",
+    "cudnn_allow_tf32": true,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "matmul_allow_tf32": false
+  }
+}

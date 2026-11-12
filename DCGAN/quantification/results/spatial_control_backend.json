@@ -1,0 +1,9 @@
+{
+  "backend": "float64 CUDA gather and sum; same NumPy permutation banks as CPU reference",
+  "script_sha256": "c45eb54ee73a5ed0ad6f3b3becfada922f18876b8044897579e16481654a363e",
+  "reference_metrics_sha256": "6763f77123139dd4d7b3b48a5d02ae248d9995629c214661fcccdf6322c71eb2",
+  "device": "cuda:0",
+  "device_name": "NVIDIA A100 80GB PCIe",
+  "real_size_cpu_comparison_max_absolute_error": 5.551115123125783e-16,
+  "validation_tolerance": 1e-12
+}

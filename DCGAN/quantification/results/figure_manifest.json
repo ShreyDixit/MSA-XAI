@@ -1,0 +1,42 @@
+{
+  "script_sha256": "44e253c6e59e2d7203a5cbb384d6cb4d89a759d90a424c776fa13b426162fccd",
+  "reference_style": "/home/shrey/MSA-XAI/MLP/visual_config.py",
+  "reference_style_sha256": "a154a7bf6dc8af13d2902b6bc40e5bfebc38b5072ae620e5dece364713556103",
+  "font": "DejaVu Sans",
+  "font_note": "Explicit fallback to the DejaVu Sans font embedded in the checked-in MLP/LLM reference PDFs when Atkinson is unavailable.",
+  "font_size_pt": 8,
+  "pdf_fonttype": 42,
+  "svg_fonttype": "none",
+  "png_dpi": 600,
+  "display_layers": "1-5 correspond to CSV/checkpoint layers 0-4",
+  "source_csv_sha256": {
+    "agreement_by_layer.csv": "766e4949b06fd041d16e976620c8e2dd625139859668b2ca0602934ca5dde2ae",
+    "agreement_by_image_layer.csv": "7f6bae37add0773ae2e9ae9f871f94a4f348dd99f89b235a3cd39b6fd9feca4c",
+    "spectral_by_layer.csv": "8cbf0963e3a2b9edf1a8236df599f6d2bf0e6e87f78215ca0330202c02999ced",
+    "spectral_by_image_layer.csv": "daa4993ea0d914d854c179f1b1603d2e31fa7754838c85d90e1e991b683d0fec",
+    "spectral_by_filter_image.csv": "63f700b43d542361d6546d75909da4058de303f3bd37d167b41bf568df01caf8",
+    "agreement_sensitivity_by_layer.csv": "af4b45457727d8d8b1203661fb5fced148f667ad03ff7b2291a083e5b51cc731",
+    "spectral_output_rgb_summary.csv": "fd3f5bf3f80b93535029c3a693ecbaee209fd5fe571acf44d6ec19ab9d797215"
+  },
+  "statistics_recomputed": false,
+  "exports": [
+    "fixed_spatial_examples.pdf",
+    "fixed_spatial_examples.png",
+    "fixed_spatial_examples.svg",
+    "layer_spatial_scale.pdf",
+    "layer_spatial_scale.png",
+    "layer_spatial_scale.svg",
+    "output_rgb_spatial_scale.pdf",
+    "output_rgb_spatial_scale.png",
+    "output_rgb_spatial_scale.svg",
+    "spatial_agreement.pdf",
+    "spatial_agreement.png",
+    "spatial_agreement.svg",
+    "spatial_agreement_by_image.pdf",
+    "spatial_agreement_by_image.png",
+    "spatial_agreement_by_image.svg",
+    "spatial_numerical_sensitivity.pdf",
+    "spatial_numerical_sensitivity.png",
+    "spatial_numerical_sensitivity.svg"
+  ]
+}

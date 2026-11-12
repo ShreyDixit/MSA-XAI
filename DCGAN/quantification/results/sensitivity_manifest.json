@@ -1,0 +1,12 @@
+{
+  "agreement_csv_sha256": "cb36333c53b89fbdc62eb0493c9029cb08b9a8319deafbe9e8b143fe119a7139",
+  "script_sha256": "57028c8f55557d0d5a72ef2f6d6470de2aff111e4fd186dea00ee4f6d4e4c526",
+  "minimum_mean_change_thresholds": [
+    0.0,
+    1e-06,
+    1e-05
+  ],
+  "seed": 2810,
+  "bootstrap": 10000,
+  "reason": "Historical cuDNN kernels exhibit sub-micro-unit repeat differences; tiny changes can be dominated by numerical noise."
+}

@@ -1,0 +1,52 @@
+{
+  "selection": "The original notebook uses image 30 and lists three example filters per layer. One from each layer was chosen for visible spatial structure; no numerical agreement threshold was used.",
+  "interpretation": "Illustrative examples only. Population results use all images and filters.",
+  "display": "Each heatmap is divided by its own maximum only for display. Scientific calculations use raw unnormalized maps. Purple tint marks the actual 3277 selected pixels; no smoothing or threshold changes.",
+  "examples": [
+    {
+      "image": 30,
+      "csv_layer": 0,
+      "display_layer": 1,
+      "filter": 72,
+      "attribution_display_max": 0.005791177969011998,
+      "change_display_max": 0.032376488049825035,
+      "top_pixels": 3277
+    },
+    {
+      "image": 30,
+      "csv_layer": 1,
+      "display_layer": 2,
+      "filter": 50,
+      "attribution_display_max": 0.015913623992767554,
+      "change_display_max": 0.08644087115923564,
+      "top_pixels": 3277
+    },
+    {
+      "image": 30,
+      "csv_layer": 2,
+      "display_layer": 3,
+      "filter": 7,
+      "attribution_display_max": 0.04842540114621318,
+      "change_display_max": 0.2678070068359375,
+      "top_pixels": 3277
+    },
+    {
+      "image": 30,
+      "csv_layer": 3,
+      "display_layer": 4,
+      "filter": 12,
+      "attribution_display_max": 0.02181491235064134,
+      "change_display_max": 0.10035995642344157,
+      "top_pixels": 3277
+    },
+    {
+      "image": 30,
+      "csv_layer": 4,
+      "display_layer": 5,
+      "filter": 8,
+      "attribution_display_max": 0.03309997577468553,
+      "change_display_max": 0.09213200211524963,
+      "top_pixels": 3277
+    }
+  ]
+}
