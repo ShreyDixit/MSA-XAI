@@ -1,3 +1,23 @@
 DCGAN/data*
 *.pyc
 MLP/data*
+data*
+*job.err.*
+*job.out.*
+.ipy*
+
+# Local Python environments and caches
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Generated experiment outputs and resumable checkpoints
+/LLM/results/
+/LLM/shapley_analysis_*_[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9]*.csv
+
+# Slurm's default output filename (custom job logs are ignored above)
+slurm-*.out
+
+# DCGAN convergence experiment environment and generated statistics
+/.venv-dcgan-cost/
+/DCGAN/results/

@@ -1,6 +1,6 @@
 from copy import deepcopy
 import json
-import os
+from pathlib import Path
 import random
 import re
 import torch as th
@@ -12,7 +12,7 @@ def read_jsonl(path: str):
 
 
 def get_examples(split):
-    path = os.path.join("GSM8K/data/", f"{split}.jsonl")
+    path = Path(__file__).resolve().parent / "data" / f"{split}.jsonl"
     examples = read_jsonl(path)
 
     for ex in examples:
@@ -43,13 +43,14 @@ def is_correct(model_completion, gt_example):
     return extract_answer(model_completion) == gt_answer
 
 class GSM8KDataset(th.utils.data.Dataset):
-    def __init__(self, tokenizer, num_shots=1, num_examples = -1):
+    def __init__(self, tokenizer, num_shots=1, num_examples=-1, seed=None):
+        rng = random.Random(seed) if seed is not None else random
         dataset_train = get_examples("train")
         self.dataset_test = get_examples("test")        
-        train_examples = random.sample(dataset_train, num_shots)
+        train_examples = rng.sample(dataset_train, num_shots)
 
         if num_examples > 0:
-            self.dataset_test = random.sample(self.dataset_test, num_examples)
+            self.dataset_test = rng.sample(self.dataset_test, num_examples)
 
         self.tokenizer = tokenizer
 
