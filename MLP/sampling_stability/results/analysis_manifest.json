@@ -1,0 +1,25 @@
+{
+  "bootstrap_resamples": 10000,
+  "percentile_interval": [
+    0.025,
+    0.975
+  ],
+  "analysis_source_sha256": "77e53d8e0daff1ed3e4a4d158e89df9f7d7b8b85c1151d50c3600998b31042be",
+  "statistics_source_sha256": "fe6aaf84f92cd7a4ca92d658f60d110946f9fdee345663d08b44df31d5518fc1",
+  "inference_manifest_sha256": "686fe0fac9b7273862e1ec994a9689c06c8792cb9f80630d95a3b8c4abb89fb7",
+  "condition_mean_interval": "Monte Carlo uncertainty conditional on the ten fixed checkpoints and evaluation batch",
+  "between_model_variation": "Sample SD of ten checkpoint D estimates; reported separately, no model resampling",
+  "finite_reference": "1000 permutations, not exact Shapley or true D; nested estimates share permutation rows",
+  "fixed_budget": "1000 per model; no extensions, per user instruction",
+  "outputs": {
+    "convergence.csv": "4565b66b6b434162b32dfab25e57f8a571c3e2cf75df77028c5eae769d38bd76",
+    "model_uncertainty.csv": "bbc3099c0e397df08c937814f2eab4c527192f9ce90b6093dbd719e0fc59b2bb",
+    "independent_halves.csv": "ada13fcdd131f5f0727d48814f093b5c7723fefb1efd48fd7a3831905c97143c",
+    "shapley_mean_and_se.csv": "f99325912c15c8e4cab4b603948fe8af97300302ace9810047624e143dce6e11",
+    "validation.csv": "d1131e1c95bea120ad1ad4785cbbfe79d95ac293c8cf8dc6cbc75c6837a9dc64",
+    "seeds.csv": "310b4bba3515ab6166a18ff3de165a5f641f9fc721859979b344c76573ccdf21",
+    "condition_summary.csv": "79d400312d3ca04a93d02969cce0b541cc3c54d2c294b2954ff197d29ed24205",
+    "condition_contrasts.csv": "0bbe5b05aab4d33e2745e50a35139fe64a1df1b8852b9e530a2b018c5da544ad",
+    "convergence_summary.csv": "1274a8f3804b218900857c95b3cfa8c94dce461a10d6d6d6ed728e07257c9e0a"
+  }
+}

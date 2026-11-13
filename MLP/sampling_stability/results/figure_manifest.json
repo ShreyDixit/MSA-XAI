@@ -1,0 +1,33 @@
+{
+  "font": "DejaVu Sans",
+  "style_source": "MLP/visual_config.py",
+  "style_sha256": "a154a7bf6dc8af13d2902b6bc40e5bfebc38b5072ae620e5dece364713556103",
+  "plot_source_sha256": "d8960b358ed3e733458c124c3a97515ce50dd2aec44c2f89aa278b8a004fe36e",
+  "exports": [
+    "PDF with embedded TrueType fonts",
+    "SVG with editable text",
+    "600-dpi PNG"
+  ],
+  "colors": {
+    "L1": "#A6587C",
+    "L2": "#394D73",
+    "None": "#b8b8b8"
+  },
+  "csv_sha256": {
+    "convergence_summary.csv": "1274a8f3804b218900857c95b3cfa8c94dce461a10d6d6d6ed728e07257c9e0a",
+    "condition_summary.csv": "79d400312d3ca04a93d02969cce0b541cc3c54d2c294b2954ff197d29ed24205",
+    "seeds.csv": "310b4bba3515ab6166a18ff3de165a5f641f9fc721859979b344c76573ccdf21",
+    "convergence.csv": "4565b66b6b434162b32dfab25e57f8a571c3e2cf75df77028c5eae769d38bd76",
+    "independent_halves.csv": "ada13fcdd131f5f0727d48814f093b5c7723fefb1efd48fd7a3831905c97143c",
+    "validation.csv": "d1131e1c95bea120ad1ad4785cbbfe79d95ac293c8cf8dc6cbc75c6837a9dc64",
+    "shapley_mean_and_se.csv": "f99325912c15c8e4cab4b603948fe8af97300302ace9810047624e143dce6e11",
+    "model_uncertainty.csv": "bbc3099c0e397df08c937814f2eab4c527192f9ce90b6093dbd719e0fc59b2bb",
+    "condition_contrasts.csv": "0bbe5b05aab4d33e2745e50a35139fe64a1df1b8852b9e530a2b018c5da544ad"
+  },
+  "figure_stems": [
+    "convergence",
+    "uncertainty_and_halves",
+    "condition_comparisons",
+    "all_digit_convergence"
+  ]
+}
